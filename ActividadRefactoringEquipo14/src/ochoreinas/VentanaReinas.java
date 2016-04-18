@@ -12,12 +12,14 @@ import javax.swing.*;
 public class VentanaReinas extends Frame {
 
 	private class CloseQuit extends WindowAdapter {
+		@Override
 		public void windowClosing(WindowEvent e) {
 			System.exit(0);
 		}
 	}
 
 	private class MouseKeeper extends MouseAdapter {
+		@Override
 		public void mousePressed(MouseEvent e) {
 			//Avanzar cuando ya hay una solución dada
 			ultimaReina.avanza();
