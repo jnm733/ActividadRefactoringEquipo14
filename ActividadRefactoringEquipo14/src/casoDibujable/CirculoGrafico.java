@@ -17,10 +17,12 @@ public class CirculoGrafico extends Circulo implements Dibujable {
 	// métodos de la interface Dibujable
 	public void dibujar(Graphics dw) {
 		dw.setColor(color);
-		dw.drawOval((int) (x - r), (int) (y - r), (int) (2 * r), (int) (2 * r));
+		dw.drawOval((int) (getX() - getR()), (int) (getY() - getR()), (int) (2 * getR()), (int) (2 * getR()));
 	}
 
 	public void setPosicion(double x, double y) {
 		;
+		//Método sin implementar aún
+
 	}
 } // fin de la clase CirculoGrafico
