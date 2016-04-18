@@ -2,30 +2,31 @@ package poligono;
 
 public class Punto {
 
-	int posX;
-	int posY;
+	double posX;
+	double posY;
 	
-	public Punto(int posX,int posY){
+	public Punto(double posX,double posY){
 		this.posX=posX;
 		this.posY=posY;
 	}
 
-	public int getPosX() {
+	public double getPosX() {
 		return posX;
 	}
 
-	public void setPosX(int posX) {
+	public void setPosX(double posX) {
 		this.posX = posX;
 	}
 
-	public int getPosY() {
+	public double getPosY() {
 		return posY;
 	}
 
-	public void setPosY(int posY) {
+	public void setPosY(double posY) {
 		this.posY = posY;
 	}
 	
+	@Override
 	public String toString(){
 		return "("+getPosX()+","+getPosY()+")";
 	}

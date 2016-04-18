@@ -2,29 +2,39 @@ package poligono;
 
 //Linea creada a partir de la pendiente y un punto.
 public class Linea {
-	private int n, x;
+	//Punto de intercepcion en el eje de las ordenadas (y)
+	private double intercepto;
+	private int pendiente;
 	
-	public Linea (int m, Punto punto){
-		x = m;
-		n = -m*punto.getPosX() + punto.getPosY();
+	public Linea (int pendiente, Punto punto){
+		this.pendiente = pendiente;
+		this.intercepto = -this.pendiente*punto.getPosX() + punto.getPosY();
 	}
 	
+	//Ecuacion principal
+	@Override
 	public String toString(){
-		return "y = "+x+"x + ("+n+")";
+		return "y = "+pendiente+"x + ("+intercepto+")";
 	}
 	
-	public String implicita(){
-		return x+"x - y ("+n+") = 0";
+	public String toStringEcuacionGeneral(){
+		return this.pendiente+"x - y ("+intercepto+") = 0";
 	}
 	
 	public String puntoCorte(Linea otra){
-		double coordenadaX, coordenadaY;
-		if (this.x == otra.x) {
+		double coordenadaX;
+		double coordenadaY;
+		Punto puntoCorte;
+		if (this.pendiente == otra.pendiente) {
 			return "paralelas o coincidentes";
 		}
-		coordenadaX = (this.n-otra.n)/(this.x-otra.x)*(-1);
-		coordenadaY = this.x*coordenadaX+this.n;
-		return "("+coordenadaX+", "+coordenadaY+")";
+		coordenadaX = (this.intercepto-otra.intercepto)/(this.pendiente-otra.pendiente)*(-1);
+		coordenadaY = this.pendiente*coordenadaX+this.intercepto;
+		
+		puntoCorte = new Punto(coordenadaX,coordenadaY);
+		
+		return puntoCorte.toString();
+		
 	}
 
 }
