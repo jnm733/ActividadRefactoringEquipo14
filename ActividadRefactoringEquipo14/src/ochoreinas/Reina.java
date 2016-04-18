@@ -32,13 +32,9 @@ class Reina {
 			fila++;
 			return buscaSolucion();
 		}
-		if (vecina != null) {
-			if (!vecina.avanza())
-				return false;
-			if (!vecina.buscaSolucion())
-				return false;
-		} else
+		if (vecina == null || !vecina.avanza() || !vecina.buscaSolucion()) {
 			return false;
+		} 
 		fila = 1;
 		return buscaSolucion();
 
