@@ -11,6 +11,20 @@ import javax.swing.*;
 
 public class VentanaReinas extends Frame {
 
+	private class CloseQuit extends WindowAdapter {
+		public void windowClosing(WindowEvent e) {
+			System.exit(0);
+		}
+	}
+
+	private class MouseKeeper extends MouseAdapter {
+		public void mousePressed(MouseEvent e) {
+			//Avanzar cuando ya hay una solución dada
+			ultimaReina.avanza();
+			repaint();
+		}
+	}
+
 	public static void main(String[] args) {
 		VentanaReinas world = new VentanaReinas();
 		world.show();
@@ -28,6 +42,7 @@ public class VentanaReinas extends Frame {
 		addWindowListener(new CloseQuit());
 	}
 
+	@Override
 	public void paint(Graphics context) {
 		super.paint(context);
 		// dibuja el tablero
@@ -37,19 +52,6 @@ public class VentanaReinas extends Frame {
 		}
 		context.drawString("Pulse con para una nueva solución", 20, 470);
 		// dibuja las reinas
-		this.ultimaReina.paint(context);
-	}
-
-	private class CloseQuit extends WindowAdapter {
-		public void windowClosing(WindowEvent e) {
-			System.exit(0);
-		}
-	}
-
-	private class MouseKeeper extends MouseAdapter {
-		public void mousePressed(MouseEvent e) {
-			ultimaReina.avanza();
-			repaint();
-		}
+		this.ultimaReina.pintarSolucion(context);
 	}
 }

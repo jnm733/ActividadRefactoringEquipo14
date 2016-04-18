@@ -61,10 +61,10 @@ class Reina {
 		return false;
 	}
 
-	public void paint(Graphics context) {
+	public void pintarSolucion(Graphics context) {
 		// primero dibuja la vecina vecina
 		if (this.vecina != null) {
-			this.vecina.paint(context);
+			this.vecina.pintarSolucion(context);
 		}
 		// despues a ella misna
 		// x, y is upper left corner
