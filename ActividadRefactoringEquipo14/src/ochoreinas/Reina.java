@@ -15,52 +15,53 @@ class Reina {
 
 	// constructor
 	Reina(int c, Reina n) {
-		fila = 1;
-		columna = c;
-		vecina = n;
+		this.fila = 1;
+		this.columna = c;
+		this.vecina = n;
 	}
 
 	public boolean buscaSolucion() {
-		while (vecina != null && vecina.puedeAtacar(fila, columna)) {
+		while (this.vecina != null && this.vecina.puedeAtacar(this.fila, this.columna)) {
 			if (!avanza()) {
+				return false;
 			}
 		}
 		return true;
 	}
 
 	public boolean avanza() {
-		if (fila < 8) {
-			fila++;
+		if (this.fila < 8) {
+			this.fila++;
 			return buscaSolucion();
 		}
-		if (vecina == null || !vecina.avanza() || !vecina.buscaSolucion()) {
+		if (this.vecina == null || !this.vecina.avanza() || !this.vecina.buscaSolucion()) {
 			return false;
 		}
-		fila = 1;
+		this.fila = 1;
 		return buscaSolucion();
 
 	}
 
 	private boolean puedeAtacar(int testfila, int testcolumna) {
-		int columnaDiferencia = testcolumna - columna;
-		if ((fila == testfila) || (fila + columnaDiferencia == testfila) || (fila - columnaDiferencia == testfila)) {
+		int columnaDiferencia = testcolumna - this.columna;
+		if ((this.fila == testfila) || (this.fila + columnaDiferencia == testfila) || (this.fila - columnaDiferencia == testfila)) {
 			return true;
 		}
-		if (vecina != null) {
-			return vecina.puedeAtacar(testfila, testcolumna);
+		if (this.vecina != null) {
+			return this.vecina.puedeAtacar(testfila, testcolumna);
 		}
 		return false;
 	}
 
 	public void paint(Graphics g) {
 		// primero dibuja la vecina vecina
-		if (vecina != null) {
-			vecina.paint(g);
+		if (this.vecina != null) {
+			this.vecina.paint(g);
 		}
 		// despues a ella misna
 		// x, y is upper left corner
-		int x = (fila - 1) * 50 + 10;
-		int y = (columna - 1) * 50 + 40;
+		int x = (this.fila - 1) * 50 + 10;
+		int y = (this.columna - 1) * 50 + 40;
 		g.drawLine(x + 5, y + 45, x + 45, y + 45);
 		g.drawLine(x + 5, y + 45, x + 5, y + 5);
 		g.drawLine(x + 45, y + 45, x + 45, y + 5);
