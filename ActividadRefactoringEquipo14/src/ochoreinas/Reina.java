@@ -29,6 +29,8 @@ class Reina {
 		return true;
 	}
 
+	
+	
 	public boolean avanza() {
 		if (this.fila < 8) {
 			this.fila++;
@@ -42,6 +44,12 @@ class Reina {
 
 	}
 
+	/**
+	 *
+	 * @param testfila
+	 * @param testcolumna
+	 * @return true si puede atacar, false en caso contrario.
+	 */
 	private boolean puedeAtacar(int testfila, int testcolumna) {
 		int columnaDiferencia = testcolumna - this.columna;
 		if ((this.fila == testfila) || (this.fila + columnaDiferencia == testfila) || (this.fila - columnaDiferencia == testfila)) {
@@ -53,24 +61,42 @@ class Reina {
 		return false;
 	}
 
-	public void paint(Graphics g) {
+	public void paint(Graphics context) {
 		// primero dibuja la vecina vecina
 		if (this.vecina != null) {
-			this.vecina.paint(g);
+			this.vecina.paint(context);
 		}
 		// despues a ella misna
 		// x, y is upper left corner
 		int x = (this.fila - 1) * 50 + 10;
 		int y = (this.columna - 1) * 50 + 40;
-		g.drawLine(x + 5, y + 45, x + 45, y + 45);
-		g.drawLine(x + 5, y + 45, x + 5, y + 5);
-		g.drawLine(x + 45, y + 45, x + 45, y + 5);
-		g.drawLine(x + 5, y + 35, x + 45, y + 35);
-		g.drawLine(x + 5, y + 5, x + 15, y + 20);
-		g.drawLine(x + 15, y + 20, x + 25, y + 5);
-		g.drawLine(x + 25, y + 5, x + 35, y + 20);
-		g.drawLine(x + 35, y + 20, x + 45, y + 5);
-		g.drawOval(x + 20, y + 20, 10, 10);
+		pintarReina(context, x, y);
+	}
+	
+	public static Reina calcularTablero(){
+		Reina ultimaReina = null;
+		for (int i = 1; i <= 8; i++) {
+			ultimaReina = new Reina(i, ultimaReina);
+			ultimaReina.buscaSolucion();
+		}
+		return ultimaReina;
+	}
+
+	/**
+	 * @param context
+	 * @param x
+	 * @param y
+	 */
+	private void pintarReina(Graphics context, int x, int y) {
+		context.drawLine(x + 5, y + 45, x + 45, y + 45);
+		context.drawLine(x + 5, y + 45, x + 5, y + 5);
+		context.drawLine(x + 45, y + 45, x + 45, y + 5);
+		context.drawLine(x + 5, y + 35, x + 45, y + 35);
+		context.drawLine(x + 5, y + 5, x + 15, y + 20);
+		context.drawLine(x + 15, y + 20, x + 25, y + 5);
+		context.drawLine(x + 25, y + 5, x + 35, y + 20);
+		context.drawLine(x + 35, y + 20, x + 45, y + 5);
+		context.drawOval(x + 20, y + 20, 10, 10);
 	}
 
 }

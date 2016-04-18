@@ -21,24 +21,23 @@ public class VentanaReinas extends Frame {
 	public VentanaReinas() {
 		setTitle("Problema de las ocho reinas");
 		setSize(600, 500);
-		for (int i = 1; i <= 8; i++) {
-			this.ultimaReina = new Reina(i, this.ultimaReina);
-			this.ultimaReina.buscaSolucion();
-		}
+		
+		ultimaReina = Reina.calcularTablero();
+		
 		addMouseListener(new MouseKeeper());
 		addWindowListener(new CloseQuit());
 	}
 
-	public void paint(Graphics g) {
-		super.paint(g);
+	public void paint(Graphics context) {
+		super.paint(context);
 		// dibuja el tablero
 		for (int i = 0; i <= 8; i++) {
-			g.drawLine(50 * i + 10, 40, 50 * i + 10, 440);
-			g.drawLine(10, 50 * i + 40, 410, 50 * i + 40);
+			context.drawLine(50 * i + 10, 40, 50 * i + 10, 440);
+			context.drawLine(10, 50 * i + 40, 410, 50 * i + 40);
 		}
-		g.drawString("Pulse con para una nueva solución", 20, 470);
-		// draw queens
-		this.ultimaReina.paint(g);
+		context.drawString("Pulse con para una nueva solución", 20, 470);
+		// dibuja las reinas
+		this.ultimaReina.paint(context);
 	}
 
 	private class CloseQuit extends WindowAdapter {
