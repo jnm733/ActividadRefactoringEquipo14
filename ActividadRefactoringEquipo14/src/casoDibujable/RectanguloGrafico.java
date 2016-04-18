@@ -15,11 +15,13 @@ class RectanguloGrafico extends Rectangulo implements Dibujable {
 	}
 
 	// métodos de la interface Dibujable
+	@Override
 	public void dibujar(Graphics dw) {
 		dw.setColor(color);
 		dw.drawRect((int) x1, (int) y1, (int) (x2 - x1), (int) (y2 - y1));
 	}
 
+	@Override
 	public void setPosicion(double x, double y) {
 		; // método vacío, pero necesario de definir
 	}

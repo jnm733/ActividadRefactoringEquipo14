@@ -19,10 +19,11 @@ public class Rectangulo extends Geometria {
 	}
 
 	// definición de métodos
+	@Override
 	public double perimetro() {
 		return 2.0 * ((x1 - x2) + (y1 - y2));
 	}
-
+	@Override
 	public double area() {
 		return (x1 - x2) * (y1 - y2);
 	}
