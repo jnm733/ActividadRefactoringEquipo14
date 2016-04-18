@@ -21,9 +21,10 @@ class Reina {
 	}
 
 	public boolean buscaSolucion() {
-		while (vecina != null && vecina.puedeAtacar(fila, columna))
-			if (!avanza())
-				return false;
+		while (vecina != null && vecina.puedeAtacar(fila, columna)) {
+			if (!avanza()) {
+			}
+		}
 		return true;
 	}
 
@@ -34,7 +35,7 @@ class Reina {
 		}
 		if (vecina == null || !vecina.avanza() || !vecina.buscaSolucion()) {
 			return false;
-		} 
+		}
 		fila = 1;
 		return buscaSolucion();
 
@@ -42,17 +43,20 @@ class Reina {
 
 	private boolean puedeAtacar(int testfila, int testcolumna) {
 		int columnaDiferencia = testcolumna - columna;
-		if ((fila == testfila) || (fila + columnaDiferencia == testfila) || (fila - columnaDiferencia == testfila))
+		if ((fila == testfila) || (fila + columnaDiferencia == testfila) || (fila - columnaDiferencia == testfila)) {
 			return true;
-		if (vecina != null)
+		}
+		if (vecina != null) {
 			return vecina.puedeAtacar(testfila, testcolumna);
+		}
 		return false;
 	}
 
 	public void paint(Graphics g) {
 		// primero dibuja la vecina vecina
-		if (vecina != null)
+		if (vecina != null) {
 			vecina.paint(g);
+		}
 		// despues a ella misna
 		// x, y is upper left corner
 		int x = (fila - 1) * 50 + 10;
