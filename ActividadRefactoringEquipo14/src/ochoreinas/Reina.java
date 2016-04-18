@@ -14,10 +14,10 @@ class Reina {
 	private Reina vecina;
 
 	// constructor
-	Reina(int c, Reina n) {
+	Reina(int columna, Reina vecina) {
 		this.fila = 1;
-		this.columna = c;
-		this.vecina = n;
+		this.columna = columna;
+		this.vecina = vecina;
 	}
 
 	public boolean buscaSolucion() {
