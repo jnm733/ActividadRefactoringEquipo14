@@ -40,17 +40,11 @@ public class Poligono {
 		int moduloulo = poligono.size();
 		for (int k = 0; k < poligono.size(); k++) {
 			A+=poligono.get(k).getPosX()*poligono.get((k+1)%modulo).getPosY()-poligono.get((k+1)%modulo).getPosX()*poligono.get(k).getPosY();
-		}
-		A=A/2;
-
-		for (int k = 0; k < poligono.size(); k++) {
 			X+=(poligono.get(k).getPosX()+poligono.get((k+1)%modulo).getPosX())*(poligono.get(k).getPosX()*poligono.get((k+1)%modulo).getPosY()-poligono.get((k+1)%modulo).getPosX()*poligono.get(k).getPosY());
-		}
-		X=X/(6*A);
-
-		for (int k = 0; k < poligono.size(); k++) {
 			Y+=(poligono.get(k).getPosY()+poligono.get((k+1)%modulo).getPosY())*(poligono.get(k).getPosX()*poligono.get((k+1)%modulo).getPosY()-poligono.get((k+1)%modulo).getPosX()*poligono.get(k).getPosY());
 		}
+		A=A/2;
+		X=X/(6*A);
 		Y=Y/(6*A);
 		return new Punto((int) X, (int)Y);
 	}
